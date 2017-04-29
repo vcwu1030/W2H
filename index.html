@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Course</title>
+    <script src="https://d3js.org/d3.v3.min.js">
+//    <script src="d3.js">
+    </script>
+    
+</head>
+<body>
+    <p><a href="index.html">回首頁</a></p>
+
+<hr>
+  
+    <p>跳躍的五線譜</p>
+    
+    <svg width="300" height="200" id="svg1"></svg>
+    
+    <script>        
+        d3.select("#svg1")
+          .append("rect")
+          .attr({
+            "x":0,
+            "y":0,
+            "width":300,
+            "height":200,
+            "fill":"#FDF5E6"
+          });
+        
+        for(var i=0; i<5; i=i+1){
+            d3.select("#svg1")
+              .append("rect")
+              .attr({
+                "x":0,
+                "y":45+30*i,
+                "width":300,
+                "height":2
+            });
+        }
+     var nn = Math.random()* 50;
+        d3.select("#svg1")
+          .append("circle")
+          .attr({
+            "cx":150+nn,
+            "cy":120,
+            "r":15
+          });
+        
+        d3.select("#svg1")
+          .append("rect")
+          .attr({
+            "x":160+nn,
+            "y":45,
+            "width":5,
+            "height":78
+          });
+        
+        d3.select("#svg1")
+          .append("text")
+          .attr({
+            "x":140,
+            "y":200,
+            "font-size":40
+          }).text("A");
+    </script>
+
+<hr style="border-top:1px dashed">
+
+   
+    <p>用For Loop 搭配亂數函式 產生20條有數值的Bar Chart</p>
+    
+    <svg width="800" height="600" id="svg2"></svg>
+    
+    <script>
+        var random = function(N,M){N=N+1;
+            return Math.floor(Math.random()*(M-N+1)+N);
+        }
+        
+        for(var i=0; i<20; i=i+1){
+            var num=random(20,300);
+            
+            d3.select("#svg2")
+              .append("rect")
+              .attr({
+                "x":10,
+                "y":10+12*i,
+                "width":num,
+                "height":10,
+                "fill":"red"
+            });
+            
+            d3.select("#svg2")
+              .append("text")
+              .attr({
+                "x":10+num+15,
+                "y":10+12*i+8,
+                "font-size":9
+            }).text(num);
+        }
+    </script>
+
+<hr style="border-top:1px dashed">
+
+    
+    <p>用For Loop 搭配亂數函式 產生20條有數值的Line Chart</p>
+        
+    <svg width="800" height="600" id="svg3"></svg>
+    
+    <script>
+        var random = function(N,M){N=N+1;
+            return Math.floor(Math.random()*(M-N+1)+N);
+        }
+        
+        var points = "10,10 ";
+        
+        for(var i=0; i<20; i=i+1){
+            var num=random(20,300);
+            
+            points = points+(10+num)+","+(10+12*i)+" ";
+            
+            d3.select("#svg3")
+              .append("circle")
+              .attr({
+                "cx":10+num,
+                "cy":10+12*i,
+                "r":4,
+                "fill":"red"
+            });
+            
+            d3.select("#svg3")
+              .append("text")
+              .attr({
+                "x":10+num+15,
+                "y":10+12*i+8,
+                "font-size":9
+            }).text(num);
+        }
+        
+        points = points+"10,"+(10+12*20);
+        
+        d3.select("#svg3")
+          .append("polyline")
+          .attr({
+            "points":points,
+            "stroke":"black",
+            "fill":"rgba(0,0,0,0)"
+         });
+        
+        console.log(points);
+
+    </script>
+    
+<hr style="border-top:1px dashed">
+    
+</body>
+</html>
